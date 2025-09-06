@@ -11,6 +11,7 @@ const Header = () => {
     { name: "Medical Records", href: "/records", icon: FileText },
     { name: "For Hospitals", href: "/hospitals", icon: Building2 },
     { name: "Dashboard", href: "/dashboard", icon: User },
+    { name: "Admin", href: "/admin", icon: Building2 },
   ];
 
   return (
