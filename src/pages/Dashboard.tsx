@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
+import { UploadRecordDialog } from "@/components/medical/UploadRecordDialog";
 import { 
   Plus, 
   Heart, 
@@ -204,10 +205,18 @@ const Dashboard = () => {
                   <Plus className="h-6 w-6" />
                   Create New Campaign
                 </Button>
-                <Button className="h-20 flex-col gap-2" variant="outline">
-                  <Upload className="h-6 w-6" />
-                  Upload Medical Record
-                </Button>
+                <UploadRecordDialog 
+                  onUploadSuccess={() => {
+                    // Refresh medical records list here if needed
+                    console.log("Medical record uploaded successfully");
+                  }}
+                  trigger={
+                    <Button className="h-20 flex-col gap-2" variant="outline">
+                      <Upload className="h-6 w-6" />
+                      Upload Medical Record
+                    </Button>
+                  }
+                />
                 <Button className="h-20 flex-col gap-2" variant="outline">
                   <Heart className="h-6 w-6" />
                   Browse Campaigns
@@ -321,10 +330,10 @@ const Dashboard = () => {
           <TabsContent value="records" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Medical Records</h2>
-              <Button className="bg-gradient-to-r from-primary to-secondary">
-                <Upload className="h-4 w-4 mr-2" />
-                Upload New Record
-              </Button>
+              <UploadRecordDialog onUploadSuccess={() => {
+                // Refresh medical records list here if needed
+                console.log("Medical record uploaded successfully");
+              }} />
             </div>
 
             <div className="grid gap-4">
