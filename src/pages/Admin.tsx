@@ -283,53 +283,54 @@ const Admin = () => {
     };
   };
 
-  if (!isConnected) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <Shield className="h-16 w-16 mx-auto text-primary mb-4" />
-            <CardTitle className="text-2xl">Admin Portal</CardTitle>
-            <p className="text-muted-foreground">Connect your admin wallet to access the platform</p>
-          </CardHeader>
-          <CardContent>
-            <Button 
-              onClick={connectWallet} 
-              disabled={loading}
-              className="w-full"
-            >
-              {loading ? (
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-              ) : (
-                <Wallet className="h-4 w-4 mr-2" />
-              )}
-              Connect Wallet
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  // Temporarily disabled for development
+  // if (!isConnected) {
+  //   return (
+  //     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+  //       <Card className="w-full max-w-md">
+  //         <CardHeader className="text-center">
+  //           <Shield className="h-16 w-16 mx-auto text-primary mb-4" />
+  //           <CardTitle className="text-2xl">Admin Portal</CardTitle>
+  //           <p className="text-muted-foreground">Connect your admin wallet to access the platform</p>
+  //         </CardHeader>
+  //         <CardContent>
+  //           <Button 
+  //             onClick={connectWallet} 
+  //             disabled={loading}
+  //             className="w-full"
+  //           >
+  //             {loading ? (
+  //               <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+  //             ) : (
+  //               <Wallet className="h-4 w-4 mr-2" />
+  //             )}
+  //             Connect Wallet
+  //           </Button>
+  //         </CardContent>
+  //       </Card>
+  //     </div>
+  //   );
+  // }
 
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <Shield className="h-16 w-16 mx-auto text-destructive mb-4" />
-            <CardTitle className="text-2xl">Access Denied</CardTitle>
-            <p className="text-muted-foreground">This wallet does not have admin privileges</p>
-          </CardHeader>
-          <CardContent>
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-4">Connected as:</p>
-              <p className="font-mono text-xs break-all">{walletAddress}</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  // if (!isAdmin) {
+  //   return (
+  //     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+  //       <Card className="w-full max-w-md">
+  //         <CardHeader className="text-center">
+  //           <Shield className="h-16 w-16 mx-auto text-destructive mb-4" />
+  //           <CardTitle className="text-2xl">Access Denied</CardTitle>
+  //           <p className="text-muted-foreground">This wallet does not have admin privileges</p>
+  //         </CardHeader>
+  //         <CardContent>
+  //           <div className="text-center">
+  //             <p className="text-sm text-muted-foreground mb-4">Connected as:</p>
+  //             <p className="font-mono text-xs break-all">{walletAddress}</p>
+  //           </div>
+  //         </CardContent>
+  //       </Card>
+  //     </div>
+  //   );
+  // }
 
   const stats = getTotalStats();
 
