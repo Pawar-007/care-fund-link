@@ -215,6 +215,29 @@ const Admin = () => {
     }
   };
 
+  const handleDonate = async (id: number, amountStr: string) => {
+    try {
+      setLoading(true);
+      const amount = ethers.parseEther(amountStr);
+      const success = await web3Service.donateToRequest(id, amount);
+      if (success) {
+        await loadData();
+        toast({
+          title: "Donation Successful",
+          description: `${amountStr} ETH donated to request #${id}`,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to donate to request",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSetHospital = async () => {
     if (!hospitalAddress || !ethers.isAddress(hospitalAddress)) {
       toast({
@@ -413,6 +436,7 @@ const Admin = () => {
                   onApprove={handleApprove}
                   onCancel={handleCancel}
                   onDisburse={handleDisburse}
+                  onDonate={handleDonate}
                   isLoading={loading}
                 />
               ))}
@@ -430,6 +454,7 @@ const Admin = () => {
                   onApprove={handleApprove}
                   onCancel={handleCancel}
                   onDisburse={handleDisburse}
+                  onDonate={handleDonate}
                   isLoading={loading}
                 />
               ))}
@@ -447,6 +472,7 @@ const Admin = () => {
                   onApprove={handleApprove}
                   onCancel={handleCancel}
                   onDisburse={handleDisburse}
+                  onDonate={handleDonate}
                   isLoading={loading}
                 />
               ))}
@@ -464,6 +490,7 @@ const Admin = () => {
                   onApprove={handleApprove}
                   onCancel={handleCancel}
                   onDisburse={handleDisburse}
+                  onDonate={handleDonate}
                   isLoading={loading}
                 />
               ))}

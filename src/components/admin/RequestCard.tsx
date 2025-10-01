@@ -23,6 +23,7 @@ interface RequestCardProps {
   onApprove: (id: number) => void;
   onCancel: (id: number) => void;
   onDisburse: (id: number, amount: string) => void;
+  onDonate?: (id: number, amount: string) => void;
   isLoading?: boolean;
 }
 
@@ -55,6 +56,7 @@ export const RequestCard = ({
   onApprove,
   onCancel,
   onDisburse,
+  onDonate,
   isLoading = false
 }: RequestCardProps) => {
   const goalInEth = parseFloat(ethers.formatEther(request.goal));
@@ -227,6 +229,28 @@ export const RequestCard = ({
                 Cancel
               </Button>
             </div>
+          </div>
+        )}
+
+        {/* Donation Action */}
+        {request.state === RequestState.Approved && onDonate && (
+          <div className="pt-3 border-t space-y-3">
+            <div className="text-sm font-medium">Admin Donation</div>
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                const amount = prompt(`Enter donation amount in ETH:`);
+                if (amount && parseFloat(amount) > 0) {
+                  onDonate(request.id, amount);
+                }
+              }}
+              disabled={isLoading || isExpired}
+              className="w-full text-xs"
+            >
+              <Users className="h-3 w-3 mr-1" />
+              Donate to Patient
+            </Button>
           </div>
         )}
 

@@ -270,6 +270,18 @@ export class Web3Service {
       return false;
     }
   }
+
+  async donateToRequest(requestId: number, amount: bigint): Promise<boolean> {
+    if (!this.contract) return false;
+    try {
+      const tx = await this.contract.donateToRequest(requestId, { value: amount });
+      await tx.wait();
+      return true;
+    } catch (error) {
+      console.error('Error donating to request:', error);
+      return false;
+    }
+  }
 }
 
 export const web3Service = new Web3Service();
